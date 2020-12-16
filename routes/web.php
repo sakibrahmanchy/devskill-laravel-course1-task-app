@@ -13,35 +13,9 @@ use App\Models\Task;
 |
 */
 
-//Route::get('/', function () {
-//    $tasks = array (
-//        array(
-//            'id' => 1,
-//            'name' => 'Sleep at 10.00pm',
-//            'description' => "Some quick example text to build on the
-//            card title and make up the bulk of the card's content.",
-//            'order' => 1,
-//            'end_time' => '10th August, 2021',
-//        ),
-//        array(
-//            'id' => 2,
-//            'name' => 'Wake up at 7.00am',
-//            'description' => "Some quick example text to build on the
-//            card title and make up the bulk of the card's content.",
-//            'order' => 2,
-//            'end_time' => '11th August, 2021',
-//        ),
-//        array(
-//            'id' => 3,
-//            'name' => 'Go to school at 10.00am',
-//            'description' => "Some quick example text to build on the
-//            card title and make up the bulk of the card's content.",
-//            'order' => 3,
-//            'end_time' => '9th August, 2021',
-//        ),
-//    );
-//    return view('welcome', compact('tasks'));
-//});
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 

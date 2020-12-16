@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    @if(count($tasks) <= 0)
+                        You don't have any task created yet!!
+                        Maybe, <a href="">Create</a> one?
+                    @else
+                    @endif
                 </div>
             </div>
         </div>
