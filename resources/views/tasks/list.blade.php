@@ -5,14 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Create Task') }}</div>
+                    <div class="card-header">
+                        <p class="float-left">{{ __('Task List') }}</p>
+                        <a class="float-right" href="{{ route('task.create') }}">+</a>
+                    </div>
 
                     <div class="card-body">
-                       @include('includes.tasks.form')
+                        @include('includes.tasks.list')
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-

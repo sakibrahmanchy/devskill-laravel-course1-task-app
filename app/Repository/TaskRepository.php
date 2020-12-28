@@ -51,4 +51,18 @@ class TaskRepository {
         return $task;
     }
 
+    /**
+     * @param $id
+     * @return Task
+     */
+    public function getTaskById($id)
+    {
+        return Task::findOrFail($id);
+    }
+
+    public function deleteTaskById($id)
+    {
+        return $this->getTaskById($id)->delete();
+    }
+
 }
