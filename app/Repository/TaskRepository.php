@@ -30,7 +30,12 @@ class TaskRepository {
 
     public function getRecentTasksOfCurrentUser($noOfTasks = 5)
     {
-        return $this->getTasksOfCurrentUser()->take($noOfTasks);
+        $userId = Auth::id();
+        return Task::where('user_id', $userId)
+            ->orderBy('end_time', 'asc')
+            ->whereDate('end_time', '>', new \DateTime())
+            ->take($noOfTasks)
+            ->get();
     }
 
     public function createTask($task)
@@ -65,4 +70,25 @@ class TaskRepository {
         return $this->getTaskById($id)->delete();
     }
 
+    public function checkIfAuthorized($id)
+    {
+        $task = Task::where("id", $id)->first();
+        if ($task->user_id !== Auth::id()) {
+            throw new \Exception("You do not have access to modify this task");
+        }
+    }
+
+    /**
+     * @param $id
+     * @param $task
+     * @return mixed
+     * @throws \Exception
+     */
+    public function saveTask($id, $task)
+    {
+        if ($id === null || !isset($id)) {
+            throw new \Exception('Task id is required');
+        }
+        return Task::where("id", $id)->update($task);
+    }
 }

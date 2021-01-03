@@ -30,8 +30,7 @@
                     <textarea id="description"
                               class="form-control @error('description') is-invalid @enderror"
                               name="description"
-                              autofocus>
-                        @if(isset($task)) {{ $task->description }} @else {{ old('description') }} @endif
+                              autofocus>@if(isset($task)) {{ $task->description }} @else {{ old('description') }} @endif
                     </textarea>
 
             @error('description')
@@ -52,10 +51,11 @@
                    type="datetime-local"
                    class="form-control @error('end_time') is-invalid @enderror"
                    name="end_time"
-                   value="@if(isset($task)) {{ '2020-12-23T21:37'  }} @else {{ old('name') }} @endif"
+                   value="@if(isset($task)){{ date('Y-m-d\TH:i', strtotime($task->end_time)) }}@else{{ old('name') }}
+                   @endif"
             />
 
-@error('end_time')
+            @error('end_time')
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -66,7 +66,11 @@
     <div class="form-group row mb-0">
         <div class="col-md-6 offset-md-4">
             <button type="submit" class="btn btn-primary">
-                {{ __('Create Task') }}
+                @if(isset($task))
+                    {{ __('Update Task') }}
+                @else
+                    {{ __('Create Task') }}
+                @endif
             </button>
         </div>
     </div>

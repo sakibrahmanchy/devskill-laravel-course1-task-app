@@ -31,6 +31,8 @@ Route::prefix('/tasks')->group(function() {
         ->name('task.edit');
     Route::post('/{id}', [App\Http\Controllers\TaskController::class, 'update'])
         ->name('task.update');
+    Route::post('/{id}/complete', [App\Http\Controllers\TaskController::class, 'complete'])
+        ->name('task.complete');
     Route::get('/{id}/delete', [App\Http\Controllers\TaskController::class, 'delete'])
         ->name('task.delete');
 });
